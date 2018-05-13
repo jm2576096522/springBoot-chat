@@ -1,4 +1,4 @@
-package com.wys.chats.Controller;
+package com.wys.util;
 
 
 import java.io.Serializable;

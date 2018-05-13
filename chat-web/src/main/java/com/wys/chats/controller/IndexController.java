@@ -1,4 +1,4 @@
-package com.wys.chats.Controller;
+package com.wys.chats.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
