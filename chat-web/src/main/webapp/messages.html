@@ -17,20 +17,26 @@
 </head>
 <body>
 	<header class="am-topbar am-topbar-inverse admin-header">
-		<div class="am-topbar-brand"><strong>web chat</strong></div>
+		<div class="am-topbar-brand">
+			<strong>web chat</strong>
+		</div>
+		
 		<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 	
 		<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 			<!-- 搜索框（通过键入名称模糊搜索好友和群）-->
 			<form class="am-topbar-form am-topbar-left am-form-inline" role="search">
-				<div class="am-form-group">
-					<input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+				<div class="am-input-group am-input-group-sm">
+					<input type="text" class="am-form-field">
+					<span class="am-input-group-btn">
+						<button class="am-btn am-btn-default" type="button">搜索</button>
+					</span>
 				</div>
 			</form>
 			<!-- 导航栏-->
 			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 				<li><a href="index.html"><span class="am-icon-home"></span> 首页 <span class="am-badge am-badge-warning">5</span></a></li>
-				<li><a href="messages.html"><span class="am-icon-comments-o"></span>消息 <span class="am-badge am-badge-warning">5</span></a></li>
+				<li class="am-active"><a href="messages.html"><span class="am-icon-comments-o"></span>消息 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="friends.html"><span class="am-icon-user"></span> 联系人 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="flocks.html"><span class="am-icon-group"></span> 群聊 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="personalInfo.html"><span class="am-icon-newspaper-o"></span>个人中心</a></li>
@@ -48,59 +54,98 @@
 		</div>
 	</header>
 
-	<div class="am-cf admin-main">
+	<div class="am-cf admin-main" style="height:580px;">
 		<!-- sidebar start -->
 		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-			<div class="am-offcanvas-bar admin-offcanvas-bar">
-				<ul class="am-list admin-sidebar-list">
-					<li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
-					<li class="admin-parent">
-						<a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-						<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-							<li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-							<li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-							<li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-							<li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
-							<li><a href="admin-404.html"><span class="am-icon-bug"></span> 404</a></li>
-						</ul>
-					</li>
-					<li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
-					<li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-					<li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
-				</ul>
-				
-				<div class="am-panel am-panel-default admin-sidebar-panel">
-					<div class="am-panel-bd">
-						<p><span class="am-icon-bookmark"></span> 公告</p>
-						<p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
-					</div>
-				</div>
-				
-				<div class="am-panel am-panel-default admin-sidebar-panel">
-					<div class="am-panel-bd">
-						<p><span class="am-icon-tag"></span> wiki</p>
-						<p>Welcome to the Amaze UI wiki!</p>
-					</div>
-				</div>
-			</div>
+			<ul class="am-list admin-sidebar-list">
+				<li >
+					<a href="javascript:void(0)" class="am-cf" >
+						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48"><span class="am-text-middle" style="margin-left:15px;">某人</span>
+					</a>	
+				</li>
+				<li >
+					<a href="javascript:void(0)" class="am-cf" >
+						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48"><span style="margin-left:15px;">某人</span>
+					</a>	
+				</li>
+				<li >
+					<a href="javascript:void(0)" class="am-cf"  >
+						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48"><span style="margin-left:15px;">某人</span>
+					</a>	
+				</li>
+				<li >
+					<a href="javascript:void(0)" class="am-cf"  >
+						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48"><span style="margin-left:15px;">某人</span>
+					</a>
+				</li>
+			</ul>
 		</div>
 		<!-- sidebar end -->
 	
 		<!-- content start -->
-		<div class="admin-content">
+		<div class="admin-content am-fl" style="width:60%;" >
+			<div class="admin-content-body" >
+				 <div class="am-cf am-padding am-padding-bottom-0">
+					<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">某人</strong> / <small>在线</small></div>
+				</div>
+			</div>
 			
-			<footer class="am-footer">
-				<hr>
-				<p >© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-			</footer>
+			<hr>
+			<!-- 信息显示 -->
+			<div class="am-g">
+				<div class="am-offcanvas-bar admin-offcanvas-bar">
+					<div class="am-u-sm-12 am-cf" style="height:250px;" >
+					信息显示
+					</div>
+				</div>
+			</div>
+			<hr>
+			<!-- 输入框 -->	
+			<div class="am-g">
+				<div class="am-u-sm-12 am-cf" style="height:100px;" >
+				输入框
+				</div>
+			</div>
+		</div>
+		<!-- content end -->
+		
+		<!-- content start -->
+		<div class="admin-content am-fr" style="width:285px;" >
+			<div data-am-widget="tabs"
+       class="admin-content am-fr am-tabs am-tabs-d2 am-fr" style="margin:0px;" >
+      <ul class="am-tabs-nav am-cf">
+          <li class="am-active"><a href="[data-tab-panel-0]">好友资料</a></li>
+          <li class=""><a href="[data-tab-panel-1]">聊天文件</a></li>
+      </ul>
+      <div class="am-tabs-bd">
+          <div data-tab-panel-0 class="am-tab-panel am-active">
+            【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+          </div>
+          <div data-tab-panel-1 class="am-tab-panel ">
+            【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+          </div>
+      </div>
+  </div>
 		</div>
 		<!-- content end -->
 	</div>
 
 	<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
+	
+	<footer >
+		<hr>
+		<p style="text-align: center;">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+	</footer>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script type="text/javascript">
+		<!--li标签选中样式设置 -->
+		$(document).ready(function(){
+			$("ul li").click(function(){
+				$(this).addClass("am-active").siblings().removeClass("am-active")
+			});
+		});
+	</script>
 </body>
 </html>

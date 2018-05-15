@@ -31,7 +31,7 @@
 			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 				<li><a href="index.html"><span class="am-icon-home"></span> 首页 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="messages.html"><span class="am-icon-comments-o"></span>消息 <span class="am-badge am-badge-warning">5</span></a></li>
-				<li><a href="friends.html"><span class="am-icon-user"></span> 联系人 <span class="am-badge am-badge-warning">5</span></a></li>
+				<li class="am-active"><a href="friends.html"><span class="am-icon-user"></span> 联系人 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="flocks.html"><span class="am-icon-group"></span> 群聊 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="personalInfo.html"><span class="am-icon-newspaper-o"></span>个人中心</a></li>
 				<li><a href="admin.html"><span class="am-icon-user-md"></span>管理员</a></li>
@@ -99,8 +99,16 @@
 
 	<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script type="text/javascript">
+		<!--li标签选中样式设置 -->
+		$(document).ready(function(){
+			$("ul li").click(function(){
+				$(this).addClass("am-active").siblings().removeClass("am-active")
+			});
+		});
+	</script>
 </body>
 </html>
