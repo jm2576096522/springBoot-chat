@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wys.chats.user.mapper.UserInfoMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.chats.user.mapper.TbUserInfoDao">
 
-	<select id="login" parameterType="com.wys.chats.entity.UserInfoModel" resultType="com.wys.chats.entity.UserInfoModel">
-		select * from tb_user_info 
-		<where>
-			<choose>		
-				<when test="name != null and name != ''">`name` = #{name}</when>
-				<otherwise>`name` = 'admin'</otherwise>
-			</choose>
-		</where>
+	<!-- 分页查询数据 -->
+	<select id="list" parameterType="java.util.Map" resultMap="TbUserInfo">
+		select * from tb_user_info order by id DESC limit #{OFFSET} , #{LIMIT}
 	</select>
+
+	<!-- 统计数据条数 -->
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(0) from tb_user_info
+	</select>
+
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO tb_user_info (
+		`id`,
+		`name`,
+		`nick_name`,
+		`password`,
+		`email`,
+		`id_card`,
+		`phone`,
+		`image`,
+		`role_id`,
+		`isdelete`,
+		`other_id`,
+		`other_name`,
+		`other_type`,
+		`view_count`
+		)
+		VALUES(
+		#{tbUserInfo.id},
+		#{tbUserInfo.name},
+		#{tbUserInfo.nickName},
+		#{tbUserInfo.password},
+		#{tbUserInfo.email},
+		#{tbUserInfo.idCard},
+		#{tbUserInfo.phone},
+		#{tbUserInfo.image},
+		#{tbUserInfo.roleId},
+		#{tbUserInfo.isdelete},
+		#{tbUserInfo.otherId},
+		#{tbUserInfo.otherName},
+		#{tbUserInfo.otherType},
+		#{tbUserInfo.viewCount}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="java.util.Map">
+		UPDATE tb_user_info SET
+		`isdelete`= '0' WHERE `id` =#{id}
+	</delete>
+
+	<update id="update" parameterType="java.util.Map">
+		UPDATE tb_user_info
+		SET
+		id =
+		#{tbUserInfo.id},
+		name = #{tbUserInfo.name},
+		nick_name =
+		#{tbUserInfo.nickName},
+		password = #{tbUserInfo.password},
+		email =
+		#{tbUserInfo.email},
+		id_card = #{tbUserInfo.idCard},
+		phone =
+		#{tbUserInfo.phone},
+		image = #{tbUserInfo.image},
+		role_id =
+		#{tbUserInfo.roleId},
+		isdelete = #{tbUserInfo.isdelete},
+		other_id =
+		#{tbUserInfo.otherId},
+		other_name = #{tbUserInfo.otherName},
+		other_type
+		= #{tbUserInfo.otherType},
+		view_count = #{tbUserInfo.viewCount}
+	</update>
+
+
+	<select id="load" parameterType="java.util.Map" resultMap="TbUserInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tb_user_info WHERE `id` = #{id}
+	</select>
+
+	<resultMap id="TbUserInfo" type="com.wys.chats.entity.TbUserInfo">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="id_card" property="idCard" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" />
+		<result column="image" property="image" />
+		<result column="role_id" property="roleId" />
+		<result column="isdelete" property="isdelete" />
+		<result column="other_id" property="otherId" />
+		<result column="other_name" property="otherName" />
+		<result column="other_type" property="otherType" />
+		<result column="view_count" property="viewCount" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		`id`,
+		`name`,
+		`nick_name`,
+		`password`,
+		`email`,
+		`id_card`,
+		`phone`,
+		`image`,
+		`role_id`,
+		`isdelete`,
+		`other_id`,
+		`other_name`,
+		`other_type`,
+		`view_count`
+	</sql>
 </mapper>

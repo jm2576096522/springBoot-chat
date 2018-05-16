@@ -1,4 +1,4 @@
-package com.wys.util;
+package com.wys.chats.core;
 
 /**
  * SystemCode
