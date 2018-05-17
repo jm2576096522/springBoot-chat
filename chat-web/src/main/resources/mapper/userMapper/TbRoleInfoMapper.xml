@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.chats.user.dao.TbRoleInfoDao">
+
+    <resultMap id="TbRoleInfo" type="com.wys.chats.entity.TbRoleInfo" >
+        <result column="id" property="id" />
+        <result column="role_name" property="roleName" />
+        <result column="role_state" property="roleState" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `role_name`,
+        `role_state`
+    </sql>
+
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO tb_role_info (
+            `id`,
+            `role_name`,
+            `role_state`
+        )
+        VALUES(
+            #{tbRoleInfo.id},
+            #{tbRoleInfo.roleName},
+            #{tbRoleInfo.roleState}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.util.Map" >
+        DELETE FROM tb_role_info
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="update" parameterType="java.util.Map" >
+        UPDATE tb_role_info
+        SET
+            id = #{tbRoleInfo.id},
+            role_name = #{tbRoleInfo.roleName},
+            role_state = #{tbRoleInfo.roleState},
+            UpdateTime = NOW()
+        WHERE `id` = #{tbRoleInfo.id}
+    </update>
+
+
+    <select id="load" parameterType="java.util.Map" resultMap="TbRoleInfo">
+        SELECT <include refid="Base_Column_List" />
+        FROM tb_role_info
+        WHERE `id` = #{id}
+    </select>
+
+</mapper>

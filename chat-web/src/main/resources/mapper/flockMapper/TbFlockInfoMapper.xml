@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.chats.flock.dao.TbFlockInfoDao">
+
+    <resultMap id="TbFlockInfo" type="com.wys.chats.entity.TbFlockInfo" >
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="user_id" property="userId" />
+        <result column="image" property="image" />
+        <result column="status" property="status" />
+        <result column="isdelete" property="isdelete" />
+        <result column="remark" property="remark" />
+        <result column="max_number" property="maxNumber" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `name`,
+        `password`,
+        `user_id`,
+        `image`,
+        `status`,
+        `isdelete`,
+        `remark`,
+        `max_number`
+    </sql>
+
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO tb_flock_info (
+            `id`,
+            `name`,
+            `password`,
+            `user_id`,
+            `image`,
+            `status`,
+            `isdelete`,
+            `remark`,
+            `max_number`
+        )
+        VALUES(
+            #{tbFlockInfo.id},
+            #{tbFlockInfo.name},
+            #{tbFlockInfo.password},
+            #{tbFlockInfo.userId},
+            #{tbFlockInfo.image},
+            #{tbFlockInfo.status},
+            #{tbFlockInfo.isdelete},
+            #{tbFlockInfo.remark},
+            #{tbFlockInfo.maxNumber}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.util.Map" >
+        DELETE FROM tb_flock_info
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="update" parameterType="java.util.Map" >
+        UPDATE tb_flock_info
+        SET
+            id = #{tbFlockInfo.id},
+            name = #{tbFlockInfo.name},
+            password = #{tbFlockInfo.password},
+            user_id = #{tbFlockInfo.userId},
+            image = #{tbFlockInfo.image},
+            status = #{tbFlockInfo.status},
+            isdelete = #{tbFlockInfo.isdelete},
+            remark = #{tbFlockInfo.remark},
+            max_number = #{tbFlockInfo.maxNumber},
+            UpdateTime = NOW()
+        WHERE `id` = #{tbFlockInfo.id}
+    </update>
+
+
+    <select id="load" parameterType="java.util.Map" resultMap="TbFlockInfo">
+        SELECT <include refid="Base_Column_List" />
+        FROM tb_flock_info
+        WHERE `id` = #{id}
+    </select>
+
+</mapper>

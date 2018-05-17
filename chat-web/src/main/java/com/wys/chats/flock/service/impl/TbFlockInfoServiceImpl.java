@@ -1,41 +1,42 @@
-package com.wys.chats.user.service.impl;
-
-import java.util.Map;
+package com.wys.chats.flock.service.impl;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.PageDaoHelper;
 import com.wys.chats.core.Request;
-import com.wys.chats.entity.TbUserInfo;
-import com.wys.chats.user.dao.TbUserInfoDao;
-import com.wys.chats.user.service.TbUserInfoService;
+import com.wys.chats.entity.TbFlockInfo;
+import com.wys.chats.flock.dao.TbFlockInfoDao;
+import com.wys.chats.flock.service.TbFlockInfoService;
 import com.wys.chats.util.JsonUtil;
 import com.wys.chats.util.SysLog;
 
 /**
- * 用户信息表
- * 未做参数的校验
- * Created by wangyanshu on '2018-05-16 22:50:01'.
- */
+* 
+*
+* Created by wangyanshu on '2018-05-18 00:00:46'.
+*/
 @Service
-public class TbUserInfoServiceImpl implements TbUserInfoService {
+public class TbFlockInfoServiceImpl implements TbFlockInfoService {
 
 	@Resource
-	private TbUserInfoDao tbUserInfoDao;
+	private TbFlockInfoDao tbFlockInfoDao;
 
 	/**
-	 * 新增
-	 */
+    * 新增
+    */
 	@Override
-	public int insert(TbUserInfo tbUserInfo) {
+	public int insert(TbFlockInfo tbFlockInfo) {
 		try {
-			if (tbUserInfo == null) {
+			if (tbFlockInfo == null) {
 				return 0;
-			}
-			return tbUserInfoDao.insert(tbUserInfo);
+	        }
+	        return tbFlockInfoDao.insert(tbFlockInfo);
 		} catch (Exception e) {
 			SysLog.error("新增service:---"+e);
 			return 0;
@@ -43,12 +44,12 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 	}
 
 	/**
-	 * 删除
-	 */
+	* 删除
+	*/
 	@Override
 	public int delete(int id) {
 		try {
-			return tbUserInfoDao.delete(id);
+			return tbFlockInfoDao.delete(id);
 		} catch (Exception e) {
 			SysLog.error("删除service:---"+e);
 			return 0;
@@ -56,12 +57,12 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 	}
 
 	/**
-	 * 更新
-	 */
+	* 更新
+	*/
 	@Override
-	public int update(TbUserInfo tbUserInfo) {
+	public int update(TbFlockInfo tbFlockInfo) {
 		try {
-			return tbUserInfoDao.update(tbUserInfo);
+			return tbFlockInfoDao.update(tbFlockInfo);
 		} catch (Exception e) {
 			SysLog.error("更新service:---"+e);
 			return 0;
@@ -69,12 +70,12 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 	}
 
 	/**
-	 * Load查询
-	 */
+	* Load查询
+	*/
 	@Override
-	public TbUserInfo load(Request request) {
+	public TbFlockInfo load(TbFlockInfo tbFlockInfo) {
 		try {
-			return tbUserInfoDao.load(request);
+			return tbFlockInfoDao.load(tbFlockInfo);
 		} catch (Exception e) {
 			SysLog.error("Load查询service:---"+e);
 			return null;
@@ -82,8 +83,8 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 	}
 
 	/**
-	 * 分页查询
-	 */
+	* 分页查询
+	*/
 	@Override
 	public PageBean pageList(Request request) {
 		Map<String, Object> paramMap = null;
@@ -91,13 +92,11 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 			if(request.getData() != null && !request.getData().trim().equals("")){
 				paramMap = JsonUtil.getMapFromJsonObjStr(request.getData());
 			}
-			return PageDaoHelper.search(tbUserInfoDao, paramMap, request.getCurrPage(), request.getPageSize());
+			return PageDaoHelper.search(tbFlockInfoDao, paramMap, request.getCurrPage(), request.getPageSize());
 		} catch (Exception e) {
 			SysLog.error("分页查询service:---"+e);
 			return null;
 		}
-
 	}
-	
-}
 
+}

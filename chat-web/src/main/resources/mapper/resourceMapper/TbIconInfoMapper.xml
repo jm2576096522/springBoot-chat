@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.chats.resource.dao.TbIconInfoDao">
+
+    <resultMap id="TbIconInfo" type="com.wys.chats.entity.TbIconInfo" >
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="url" property="url" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `name`,
+        `type`,
+        `url`,
+        `state`
+    </sql>
+
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO tb_icon_info (
+            `id`,
+            `name`,
+            `type`,
+            `url`,
+            `state`
+        )
+        VALUES(
+            #{tbIconInfo.id},
+            #{tbIconInfo.name},
+            #{tbIconInfo.type},
+            #{tbIconInfo.url},
+            #{tbIconInfo.state}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.util.Map" >
+        DELETE FROM tb_icon_info
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="update" parameterType="java.util.Map" >
+        UPDATE tb_icon_info
+        SET
+            id = #{tbIconInfo.id},
+            name = #{tbIconInfo.name},
+            type = #{tbIconInfo.type},
+            url = #{tbIconInfo.url},
+            state = #{tbIconInfo.state},
+            UpdateTime = NOW()
+        WHERE `id` = #{tbIconInfo.id}
+    </update>
+
+
+    <select id="load" parameterType="java.util.Map" resultMap="TbIconInfo">
+        SELECT <include refid="Base_Column_List" />
+        FROM tb_icon_info
+        WHERE `id` = #{id}
+    </select>
+
+</mapper>
