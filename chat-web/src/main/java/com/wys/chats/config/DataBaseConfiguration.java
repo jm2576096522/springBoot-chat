@@ -20,7 +20,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.wys.chats.user.mapper")
+@MapperScan("com.wys.chats.*.dao")
 public class DataBaseConfiguration implements EnvironmentAware {
 
 	private RelaxedPropertyResolver propertyResolver;
