@@ -1,5 +1,6 @@
 package com.wys.chats.user.service.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -90,7 +91,10 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 		try {
 			if(request.getData() != null && !request.getData().trim().equals("")){
 				paramMap = JsonUtil.getMapFromJsonObjStr(request.getData());
+			}else{
+				paramMap = new HashMap<String, Object> ();
 			}
+			paramMap.put("id", request.getId());
 			return PageDaoHelper.search(tbUserInfoDao, paramMap, request.getCurrPage(), request.getPageSize());
 		} catch (Exception e) {
 			SysLog.error("分页查询service:---"+e);

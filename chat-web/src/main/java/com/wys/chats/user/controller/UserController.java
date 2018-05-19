@@ -11,7 +11,9 @@ import com.wys.chats.core.Request;
 import com.wys.chats.core.Response;
 import com.wys.chats.core.SystemCode;
 import com.wys.chats.entity.TbUserInfo;
+import com.wys.chats.interceptor.MyRequestHandler;
 import com.wys.chats.user.service.TbUserInfoService;
+import com.wys.chats.util.JsonUtil;
 import com.wys.chats.util.SysLog;
 
 /**
@@ -29,7 +31,7 @@ public class UserController {
 	/**
 	 * 新增
 	 */
-	@RequestMapping("/insert")
+	@RequestMapping("/insert.do")
 	@ResponseBody
 	public Object insert(@RequestBody TbUserInfo tbUserInfo){
 		try {
@@ -44,7 +46,7 @@ public class UserController {
 	/**
 	 * 删除
 	 */
-	@RequestMapping("/delete")
+	@RequestMapping("/delete.do")
 	@ResponseBody
 	public Object delete(int id){
 		try {
@@ -59,7 +61,7 @@ public class UserController {
 	/**
 	 * 更新
 	 */
-	@RequestMapping("/update")
+	@RequestMapping("/update.do")
 	@ResponseBody
 	public Object update(@RequestBody TbUserInfo tbUserInfo){
 		try {
@@ -74,7 +76,7 @@ public class UserController {
 	/**
 	 * Load查询
 	 */
-	@RequestMapping("/load")
+	@RequestMapping("/load.do")
 	@ResponseBody
 	public Object load(@RequestBody Request request){
 		try {
@@ -89,11 +91,12 @@ public class UserController {
 	/**
 	 * 分页查询
 	 */
-	@RequestMapping("/pageList")
+	@RequestMapping("/pageList.do")
 	@ResponseBody
 	public Object pageList(@RequestBody Request request) {
 		try {
 			PageBean pb = tbUserInfoService.pageList(request);
+			MyRequestHandler.handlerWebSocketPush(JsonUtil.getMapFromJsonObjStr(request.getData()));
 			return  pb  != null ? new Response(SystemCode.code_1000, pb) : new Response(SystemCode.code_1001, null);
 		} catch (Exception e) {
 			SysLog.error("分页查询:---"+e);

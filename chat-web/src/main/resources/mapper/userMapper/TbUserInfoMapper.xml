@@ -48,7 +48,7 @@
 		)
 	</insert>
 
-	<delete id="delete" parameterType="java.util.Map">
+	<delete id="delete" parameterType="java.util.Map" >
 		UPDATE tb_user_info SET
 		`isdelete`= '0' WHERE `id` =#{id}
 	</delete>
@@ -80,7 +80,7 @@
 	</update>
 
 
-	<select id="load" parameterType="java.util.Map" resultMap="TbUserInfo">
+	<select id="load" parameterType="com.wys.chats.core.Request" resultMap="TbUserInfo">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM tb_user_info WHERE `id` = #{id}

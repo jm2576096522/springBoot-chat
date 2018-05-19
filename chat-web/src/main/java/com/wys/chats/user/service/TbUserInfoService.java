@@ -2,6 +2,7 @@ package com.wys.chats.user.service;
 
 import java.util.Map;
 
+import com.wys.chats.core.BaseDao;
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.Request;
 import com.wys.chats.entity.TbUserInfo;
@@ -11,7 +12,7 @@ import com.wys.chats.entity.TbUserInfo;
  *
  * Created by wangyanshu on '2018-05-16 22:50:01'.
  */
-public interface TbUserInfoService {
+public interface TbUserInfoService{
 
 
 	/**

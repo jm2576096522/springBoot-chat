@@ -66,11 +66,8 @@
 
 
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
-
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>jstl</artifactId> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -105,13 +102,13 @@
 			<version>2.4</version>
 		</dependency>
 
-	<!-- 使用json时候将会用到的一个jar包 -->
+		<!-- 使用json时候将会用到的一个jar包 -->
 		<dependency>
 			<groupId>net.sf.ezmorph</groupId>
 			<artifactId>ezmorph</artifactId>
 			<version>1.0.6</version>
 		</dependency>
-		
+
 		<!-- java对象和json相互转化 -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -133,9 +130,13 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
-		
-		
-		
+
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.17.Final</version>
+		</dependency>
+
 		<!-- 优秀的Java XML API -->
 		<dependency>
 			<groupId>dom4j</groupId>

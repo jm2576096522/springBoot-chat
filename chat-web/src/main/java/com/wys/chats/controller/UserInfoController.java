@@ -1,3 +1,4 @@
+package com.wys.chats.controller;
 /*package com.wys.chats.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
