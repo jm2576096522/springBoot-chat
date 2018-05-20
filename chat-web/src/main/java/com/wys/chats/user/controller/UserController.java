@@ -1,6 +1,7 @@
 package com.wys.chats.user.controller;
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.wys.chats.entity.TbUserInfo;
 import com.wys.chats.interceptor.MyRequestHandler;
 import com.wys.chats.user.service.TbUserInfoService;
 import com.wys.chats.util.JsonUtil;
+import com.wys.chats.util.SendMailUtils;
 import com.wys.chats.util.SysLog;
 
 /**
@@ -27,6 +29,9 @@ public class UserController {
 
 	@Resource
 	private TbUserInfoService tbUserInfoService;
+	
+	@Autowired
+	private SendMailUtils sendMailUtils;
 
 	/**
 	 * 新增
@@ -96,7 +101,11 @@ public class UserController {
 	public Object pageList(@RequestBody Request request) {
 		try {
 			PageBean pb = tbUserInfoService.pageList(request);
+			//推送socket消息
 			MyRequestHandler.handlerWebSocketPush(JsonUtil.getMapFromJsonObjStr(request.getData()));
+			String[] toMail = { "595068001@qq.com"  };  
+			//邮箱验证码  return 验证码
+			sendMailUtils.sendTextWithMail(toMail, "获取Web Chat 注册的验证码 ", "你要注册的Web Chat 的验证码为：");
 			return  pb  != null ? new Response(SystemCode.code_1000, pb) : new Response(SystemCode.code_1001, null);
 		} catch (Exception e) {
 			SysLog.error("分页查询:---"+e);
