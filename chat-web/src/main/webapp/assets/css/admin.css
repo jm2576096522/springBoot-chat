@@ -346,7 +346,7 @@ gallery.html css
   padding-top: 51px;
 }
 
-.fixed-layout .admin-content,
+/* .fixed-layout .admin-content, */
 .fixed-layout .admin-sidebar {
   height: 100%;
   overflow-x: hidden;
