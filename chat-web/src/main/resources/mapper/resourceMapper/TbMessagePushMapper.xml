@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.chats.resource.dao.TbMessagePushDao">
+
+    <resultMap id="TbMessagePush" type="com.wys.chats.entity.TbMessagePush" >
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="msg" property="msg" />
+        <result column="type" property="type" />
+        <result column="time" property="time" />
+        <result column="state" property="state" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `title`,
+        `msg`,
+        `type`,
+        `time`,
+        `state`,
+        `user_id`
+    </sql>
+
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO tb_message_push (
+            `id`,
+            `title`,
+            `msg`,
+            `type`,
+            `time`,
+            `state`,
+            `user_id`
+        )
+        VALUES(
+            #{tbMessagePush.id},
+            #{tbMessagePush.title},
+            #{tbMessagePush.msg},
+            #{tbMessagePush.type},
+            #{tbMessagePush.time},
+            #{tbMessagePush.state},
+            #{tbMessagePush.userId}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.util.Map" >
+        DELETE FROM tb_message_push
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="update" parameterType="java.util.Map" >
+        UPDATE tb_message_push
+        SET
+            id = #{tbMessagePush.id},
+            title = #{tbMessagePush.title},
+            msg = #{tbMessagePush.msg},
+            type = #{tbMessagePush.type},
+            time = #{tbMessagePush.time},
+            state = #{tbMessagePush.state},
+            user_id = #{tbMessagePush.userId},
+            UpdateTime = NOW()
+        WHERE `id` = #{tbMessagePush.id}
+    </update>
+
+
+    <select id="load" parameterType="java.util.Map" resultMap="TbMessagePush">
+        SELECT <include refid="Base_Column_List" />
+        FROM tb_message_push
+        WHERE `id` = #{id}
+    </select>
+
+</mapper>

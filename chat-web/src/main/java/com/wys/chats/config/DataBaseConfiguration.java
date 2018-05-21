@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.wys.chats.user.mapper")
+@MapperScan("com.wys.chats.*.dao")
 public class DataBaseConfiguration implements EnvironmentAware {
 
 	private RelaxedPropertyResolver propertyResolver;

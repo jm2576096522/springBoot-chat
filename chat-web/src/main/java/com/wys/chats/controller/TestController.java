@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wys.util.Request;
-import com.wys.util.Response;
-import com.wys.util.SystemCode;
+import com.wys.chats.core.Request;
+import com.wys.chats.core.Response;
+import com.wys.chats.core.SystemCode;
 
 @Controller
 @RequestMapping("/test")

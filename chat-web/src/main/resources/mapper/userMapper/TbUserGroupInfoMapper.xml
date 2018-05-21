@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.chats.user.dao.TbUserGroupInfoDao">
+
+    <resultMap id="TbUserGroupInfo" type="com.wys.chats.entity.TbUserGroupInfo" >
+        <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="user_group_name" property="userGroupName" />
+        <result column="user_group_status" property="userGroupStatus" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `user_id`,
+        `user_group_name`,
+        `user_group_status`
+    </sql>
+
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO tb_user_group_info (
+            `id`,
+            `user_id`,
+            `user_group_name`,
+            `user_group_status`
+        )
+        VALUES(
+            #{tbUserGroupInfo.id},
+            #{tbUserGroupInfo.userId},
+            #{tbUserGroupInfo.userGroupName},
+            #{tbUserGroupInfo.userGroupStatus}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.util.Map" >
+        DELETE FROM tb_user_group_info
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="update" parameterType="java.util.Map" >
+        UPDATE tb_user_group_info
+        SET
+            id = #{tbUserGroupInfo.id},
+            user_id = #{tbUserGroupInfo.userId},
+            user_group_name = #{tbUserGroupInfo.userGroupName},
+            user_group_status = #{tbUserGroupInfo.userGroupStatus},
+            UpdateTime = NOW()
+        WHERE `id` = #{tbUserGroupInfo.id}
+    </update>
+
+
+    <select id="load" parameterType="java.util.Map" resultMap="TbUserGroupInfo">
+        SELECT <include refid="Base_Column_List" />
+        FROM tb_user_group_info
+        WHERE `id` = #{id}
+    </select>
+
+</mapper>
