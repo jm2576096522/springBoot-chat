@@ -6,7 +6,6 @@
 	<link rel="icon" type="image/png" href="assets/i/favicon.png">
 	<link rel="stylesheet" href="assets/css/amazeui.min.css"/>
 	<link rel="stylesheet" href="assets/css/admin.css">
-	<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 	<header class="am-topbar am-topbar-inverse admin-header">
@@ -47,30 +46,30 @@
 		</div>
 	</header>
 
-	<div class="am-cf admin-main " style="height:580px;">
+	<div class="am-cf admin-main " style="height:91%;">
 		<!-- 信息列表开始 -->
-		<div class="admin-sidebar  " id="admin-offcanvas" style="width:20%;">
-			<ul class="am-list admin-sidebar-list" >
+		<div class="admin-sidebar admin-offcanvas" id="messageList" style="width:20%;">
+			<ul class="am-list" >
 				<li >
-					<a href="javascript:void(0)" class="am-cf" >
+					<a href="javascript:void(0)" class="am-cf am-margin-left" >
 						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar am-margin-right" >
 						<span class="am-text-truncate  am-fl " style=" width:70%;height:48px;">1111111111111111111111111111111111111111</span>
 					</a>
 				</li>
 				<li >
-					<a href="javascript:void(0)" class="am-cf" >
+					<a href="javascript:void(0)" class="am-cf am-margin-left" >
 						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar am-margin-right" >
 						<span class="am-text-truncate am-fl" style="width:70%;height:48;">某人11111</span>
 					</a>	
 				</li>
 				<li >
-					<a href="javascript:void(0)" class="am-cf" >
+					<a href="javascript:void(0)" class="am-cf am-margin-left" >
 						<img src="assets/i/b2.jpg" alt="" class="am-comment-avatar am-margin-right" >
 						<span class="am-text-truncate am-fl" style="width:70%;height:48;">某人</span>
 					</a>	
 				</li>
 				<li >
-					<a href="javascript:void(0)" class="am-cf"  >
+					<a href="javascript:void(0)" class="am-cf am-margin-left"  >
 						<img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar am-margin-right" >
 						<span class="am-text-truncate am-fl" style="width:70%;height:48;">某人</span>
 					</a>
@@ -137,7 +136,7 @@
 			</div>
 			<!-- 输入框 -->	
 			<div class="am-g am-fr" style="height:37%;border-top:1px solid #eeeeee;">
-				<div  id="messageInput" style="height:70%;padding:0px;border-bottom:1px solid #eeeeee;"" >
+				<div  id="messageInput" style="height:70%;padding:0px;border-bottom:1px solid #eeeeee;" >
 				
 				</div>
 				
@@ -169,9 +168,11 @@
 				</ul>
 				<div class="am-tabs-bd" style="border:none;">
 					<div data-tab-panel-0 class="am-tab-panel am-active am-thumbnail" style="border:none;">
-						<img id="friend_image" src="assets/i/b2.jpg" alt="" width="100%"  class="am-radius"/>
+						<figure data-am-widget="figure" class="am am-figure am-figure-default "   data-am-figure="{  pureview: 'true' }">
+							<img id="friend_image" src="assets/i/b2.jpg" alt="某人的头像"  />
+							<figcaption class="am-figure-capition-btm"> 某人资料</figcaption>
+						</figure>
 						<div class="am-thumbnail-caption">
-							<h3>某人资料</h3>
 							<p>真实姓名：</p>
 							<p>邮箱：</p>
 							<p>手机号码：</p>
@@ -206,7 +207,7 @@
 		
 		$(document).ready(function(){
 			<!--菜单栏默认选中li标签样式  li标签选中样式设置   -->
-			$("#toClick ul li").click(function(){
+			$(" ul li").click(function(){
 				$(this).addClass("am-active").siblings().removeClass("am-active")
 			});
 			
@@ -225,12 +226,6 @@
 			});
 		});
 		
-		/* 头像全屏 */
-		$('#friend_image').on('click', function () {
-			if ($.AMUI.fullscreen.enabled) {
-				$.AMUI.fullscreen.request(this);
-			}
-		});
 	</script>
 </body>
 </html>
