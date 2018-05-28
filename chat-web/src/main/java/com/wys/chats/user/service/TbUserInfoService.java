@@ -40,6 +40,4 @@ public interface TbUserInfoService{
 	 */
 	public PageBean pageList(Request request);
 
-	public Map<String, Object> login(TbUserInfo tbUserInfo);
-
 }

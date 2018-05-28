@@ -3,7 +3,6 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import com.wys.chats.core.BaseDao;
-import com.wys.chats.entity.TbUserInfo;
 import com.wys.chats.entity.TbUserMessage;
 /**
 * 
@@ -16,7 +15,7 @@ public interface TbUserMessageDao extends BaseDao{
     /**
     * 新增
     */
-    public int insert(TbUserMessage tbUserMessage);
+    public int insert(@Param("tbUserMessage") TbUserMessage tbUserMessage);
 
     /**
     * 删除
@@ -26,15 +25,12 @@ public interface TbUserMessageDao extends BaseDao{
     /**
     * 更新
     */
-    public int update(TbUserMessage tbUserMessage);
+    public int update(@Param("tbUserMessage") TbUserMessage tbUserMessage);
 
     /**
     * Load查询
     */
     public TbUserMessage load(TbUserMessage tbUserMessage);
 
-    /**
-     * 根据用户id统计用户未读消息数
-     */
-    public int countUserMessageByUserId(TbUserInfo tbUserInfo);
+
 }

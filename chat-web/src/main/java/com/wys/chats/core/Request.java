@@ -13,7 +13,6 @@ public class Request implements Serializable{
 	public String id ;
 	public String name;
 	public String password;
-	public String email;
 	private Integer currPage=1;
 	private Integer pageSize=10;
 	private String type;
@@ -27,13 +26,6 @@ public class Request implements Serializable{
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getName() {
 		return name;

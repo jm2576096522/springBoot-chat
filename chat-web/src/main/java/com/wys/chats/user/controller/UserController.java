@@ -1,6 +1,4 @@
 package com.wys.chats.user.controller;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
@@ -39,21 +36,6 @@ public class UserController {
 	
 	@Autowired
 	private SendMailUtils sendMailUtils;
-	/**
-	 * 新增
-	 */
-	@RequestMapping("/login.do")
-	@ResponseBody
-	public Object login(@RequestBody TbUserInfo tbUserInfo){
-		try {
-			Map<String, Object> result = tbUserInfoService.login(tbUserInfo);
-			return result  != null ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
-		} catch (Exception e) {
-			SysLog.error("新增:---"+e);
-			return new Response(SystemCode.code_1002, null);
-		}
-	}
-	
 
 
 	/**
@@ -124,7 +106,7 @@ public class UserController {
 	/**
 	 * 获取邮箱验证码
 	 */
-	@RequestMapping(value="/getMVCode.do",method = RequestMethod.POST, consumes = "application/json;charset:utf-8")
+	@RequestMapping("/getMVCode.do")
 	@ResponseBody
 	public Object getMVCode(@RequestBody Request request,HttpServletRequest handlerServlet) {
 		try {
@@ -132,7 +114,7 @@ public class UserController {
 			HttpSession session = handlerServlet.getSession();
 			String[] toMail = {request.getName()};  
 			TbUserInfo tbUserInfo = tbUserInfoService.load(request);
-			if (tbUserInfo!=null && tbUserInfo.getEmail() != null && !tbUserInfo.getEmail().equals("")) {
+			if (tbUserInfo.getEmail() != null && !tbUserInfo.getEmail().equals("")) {
 				return new Response(SystemCode.code_1002, "用户已注册！！！");
 			}else{
 				session.setAttribute("mvCode", sendMailUtils.sendTextWithMail(toMail, "获取Web Chat 注册的验证码 ", "你要注册的Web Chat 的验证码为："));
@@ -144,41 +126,18 @@ public class UserController {
 		}
 	}
 	
-	
-	/**
-	 * 校验验证码
-	 */
-	@RequestMapping(value = "/checkMVCode.do", method = RequestMethod.POST, headers = "Accept=application/json")
-	@ResponseBody
-	public boolean checkVerify(@RequestBody Map<String, Object> requestMap, HttpSession session) {
-		try {
-			// 从session中获取随机数
-
-			String mvCode = requestMap.get("mvCode").toString();
-			String random = (String) session.getAttribute("mvCode");
-			if (random == null) {
-				return false;
-			}
-			if (random.equals(mvCode)) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (Exception e) {
-			SysLog.error("验证码校验失败----- " + e);
-			return false;
-		}
-	}
-	
 	/**
 	 * 用户注册
 	 */
-	@RequestMapping(value="/register.do",method = RequestMethod.POST, consumes = "application/json;charset:utf-8")
+	@RequestMapping("/register.do")
 	@ResponseBody
 	public Object register(@RequestBody Request request,HttpServletRequest handlerServlet) {
 		try {
 			int result = 0;
-			result = tbUserInfoService.insert(request);
+			HttpSession session = handlerServlet.getSession();
+			if (session.getAttribute("mvCode")!=null && session.getAttribute("mvCode").equals(request.getKeyword())) {
+				result = tbUserInfoService.insert(request);
+			}
 			return  result  > 0 ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
 		} catch (Exception e) {
 			SysLog.error("用户注册:---"+e);

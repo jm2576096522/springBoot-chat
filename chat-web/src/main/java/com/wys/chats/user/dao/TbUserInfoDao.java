@@ -35,8 +35,6 @@ public interface TbUserInfoDao extends BaseDao{
 	 */
 	public TbUserInfo load(Request request);
 
-	public TbUserInfo login(TbUserInfo tbUserInfo);
-
 
 }
 

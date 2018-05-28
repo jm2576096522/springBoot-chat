@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wys.chats.user.dao.TbUserMessageDao">
+<mapper namespace="com.wys.chats.user.mapper.TbUserMessageDao">
 
     <resultMap id="TbUserMessage" type="com.wys.chats.entity.TbUserMessage" >
         <result column="id" property="id" />
@@ -22,11 +22,6 @@
         `send_time`,
         `msg_state`
     </sql>
-    
-    <!-- 统计用户未读消息数 -->
-	<select id="countUserMessageByUserId" parameterType="com.wys.chats.entity.TbUserInfo" resultType="java.lang.Integer">
-		SELECT count(id) from tb_user_message where user_id= #{id} and msg_state='0'
-	</select>
 
     <insert id="insert" parameterType="java.util.Map" >
         INSERT INTO tb_user_message (
@@ -48,9 +43,7 @@
             #{tbUserMessage.msgState}
         )
     </insert>
-    
-    
-	
+
     <delete id="delete" parameterType="java.util.Map" >
         DELETE FROM tb_user_message
         WHERE `id` = #{id}

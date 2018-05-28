@@ -3,84 +3,71 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wys.chats.flock.dao.TbFlockMessageDao">
 
-	<resultMap id="TbFlockMessage" type="com.wys.chats.entity.TbFlockMessage">
-		<result column="id" property="id" />
-		<result column="user_id" property="userId" />
-		<result column="flock_id" property="flockId" />
-		<result column="msg_info" property="msgInfo" />
-		<result column="resource_url" property="resourceUrl" />
-		<result column="send_time" property="sendTime" />
-		<result column="read_user_id" property="readUserId" />
-	</resultMap>
+    <resultMap id="TbFlockMessage" type="com.wys.chats.entity.TbFlockMessage" >
+        <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="flock_id" property="flockId" />
+        <result column="msg_info" property="msgInfo" />
+        <result column="resource_url" property="resourceUrl" />
+        <result column="send_time" property="sendTime" />
+        <result column="read_user_id" property="readUserId" />
+    </resultMap>
 
-	<sql id="Base_Column_List">
-		`id`,
-		`user_id`,
-		`flock_id`,
-		`msg_info`,
-		`resource_url`,
-		`send_time`,
-		`read_user_id`
-	</sql>
+    <sql id="Base_Column_List">
+        `id`,
+        `user_id`,
+        `flock_id`,
+        `msg_info`,
+        `resource_url`,
+        `send_time`,
+        `read_user_id`
+    </sql>
 
-	<select id="countFlockMessageByFlockId" parameterType="java.util.Map"
-		resultType="java.lang.Integer">
-		SELECT count(id) FROM tb_flock_message WHERE flock_id in (${flockId}) AND
-		!find_in_set(#{userId},read_user_id)
-	</select>
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO tb_flock_message (
+            `id`,
+            `user_id`,
+            `flock_id`,
+            `msg_info`,
+            `resource_url`,
+            `send_time`,
+            `read_user_id`
+        )
+        VALUES(
+            #{tbFlockMessage.id},
+            #{tbFlockMessage.userId},
+            #{tbFlockMessage.flockId},
+            #{tbFlockMessage.msgInfo},
+            #{tbFlockMessage.resourceUrl},
+            #{tbFlockMessage.sendTime},
+            #{tbFlockMessage.readUserId}
+        )
+    </insert>
 
+    <delete id="delete" parameterType="java.util.Map" >
+        DELETE FROM tb_flock_message
+        WHERE `id` = #{id}
+    </delete>
 
-	<insert id="insert" parameterType="java.util.Map">
-		INSERT INTO tb_flock_message (
-		`id`,
-		`user_id`,
-		`flock_id`,
-		`msg_info`,
-		`resource_url`,
-		`send_time`,
-		`read_user_id`
-		)
-		VALUES(
-		#{tbFlockMessage.id},
-		#{tbFlockMessage.userId},
-		#{tbFlockMessage.flockId},
-		#{tbFlockMessage.msgInfo},
-		#{tbFlockMessage.resourceUrl},
-		#{tbFlockMessage.sendTime},
-		#{tbFlockMessage.readUserId}
-		)
-	</insert>
-
-	<delete id="delete" parameterType="java.util.Map">
-		DELETE FROM tb_flock_message
-		WHERE `id` = #{id}
-	</delete>
-
-	<update id="update" parameterType="java.util.Map">
-		UPDATE tb_flock_message
-		SET
-		id =
-		#{tbFlockMessage.id},
-		user_id = #{tbFlockMessage.userId},
-		flock_id =
-		#{tbFlockMessage.flockId},
-		msg_info = #{tbFlockMessage.msgInfo},
-		resource_url = #{tbFlockMessage.resourceUrl},
-		send_time =
-		#{tbFlockMessage.sendTime},
-		read_user_id =
-		#{tbFlockMessage.readUserId},
-		UpdateTime = NOW()
-		WHERE `id` =
-		#{tbFlockMessage.id}
-	</update>
+    <update id="update" parameterType="java.util.Map" >
+        UPDATE tb_flock_message
+        SET
+            id = #{tbFlockMessage.id},
+            user_id = #{tbFlockMessage.userId},
+            flock_id = #{tbFlockMessage.flockId},
+            msg_info = #{tbFlockMessage.msgInfo},
+            resource_url = #{tbFlockMessage.resourceUrl},
+            send_time = #{tbFlockMessage.sendTime},
+            read_user_id = #{tbFlockMessage.readUserId},
+            UpdateTime = NOW()
+        WHERE `id` = #{tbFlockMessage.id}
+    </update>
 
 
-	<select id="load" parameterType="java.util.Map" resultMap="TbFlockMessage">
-		SELECT
-		<include refid="Base_Column_List" />
-		FROM tb_flock_message
-		WHERE `id` = #{id}
-	</select>
+    <select id="load" parameterType="java.util.Map" resultMap="TbFlockMessage">
+        SELECT <include refid="Base_Column_List" />
+        FROM tb_flock_message
+        WHERE `id` = #{id}
+    </select>
 
 </mapper>

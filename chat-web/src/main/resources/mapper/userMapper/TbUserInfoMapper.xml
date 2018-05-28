@@ -12,13 +12,6 @@
 	<select id="count" parameterType="java.util.Map" resultType="int">
 		select count(0) from tb_user_info
 	</select>
-	<!-- 用户登录查询 -->
-	<select id="login" parameterType="TbUserInfo" resultType="TbUserInfo">
-		select * from tb_user_info
-		<where>
-			(`name`= #{name} or email=#{name}) and `password`=#{password}
-		</where>
-	</select>
 
 	<!-- 用户注册 -->
 	<insert id="insert" parameterType="com.wys.chats.core.Request">
@@ -30,7 +23,7 @@
 		VALUES(
 		#{name},
 		#{password},
-		#{email}
+		#{keyword}
 		)
 	</insert>
 

@@ -5,17 +5,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.PageDaoHelper;
 import com.wys.chats.core.Request;
 import com.wys.chats.entity.TbUserInfo;
-import com.wys.chats.flock.dao.TbFlockMessageDao;
-import com.wys.chats.flock.dao.TbFlockRelevanceDao;
 import com.wys.chats.user.dao.TbUserInfoDao;
-import com.wys.chats.user.dao.TbUserMessageDao;
 import com.wys.chats.user.service.TbUserInfoService;
 import com.wys.chats.util.JsonUtil;
 import com.wys.chats.util.SysLog;
@@ -30,38 +26,7 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 
 	@Resource
 	private TbUserInfoDao tbUserInfoDao;
-	
-	@Autowired
-	private TbUserMessageDao tbUserMessageDao;
-	
-	@Autowired
-	private TbFlockMessageDao tbFlockMessageDao;
-	
-	@Autowired
-	private TbFlockRelevanceDao tbFlockRelevanceDaoDao;
 
-	
-	@Override
-	public Map<String, Object> login(TbUserInfo tbUserInfo) {
-		Map<String, Object> reslutMap = new HashMap<String, Object>();
-		Map<String, Object> reslutCount = new HashMap<String, Object>();
-		try {
-			TbUserInfo userInfo = tbUserInfoDao.login(tbUserInfo);
-			int userId = userInfo.getId();
-			if (userInfo.getName() != null && !userInfo.getName().trim().equals("")) {
-				reslutCount.put("userMessage", tbUserMessageDao.countUserMessageByUserId(userInfo));
-				String flockId = String.valueOf(tbFlockRelevanceDaoDao.getFlockRelevanceByUserId(userId));
-				reslutCount.put("flockMessage",tbFlockMessageDao.countFlockMessageByFlockId(userId, flockId));
-			}
-			reslutMap.put("count", reslutCount);
-			return reslutMap;
-		} catch (Exception e) {
-			SysLog.error("Load查询service:---"+e);
-			return null;
-		}
-	}
-	
-	
 	/**
 	 * 新增
 	 */
@@ -137,6 +102,6 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 		}
 
 	}
-
+	
 }
 
