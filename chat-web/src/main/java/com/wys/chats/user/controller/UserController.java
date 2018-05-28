@@ -135,7 +135,7 @@ public class UserController {
 		try {
 			int result = 0;
 			HttpSession session = handlerServlet.getSession();
-			if (session.getAttribute("mvCode").equals(request.getKeyword())) {
+			if (session.getAttribute("mvCode")!=null && session.getAttribute("mvCode").equals(request.getKeyword())) {
 				result = tbUserInfoService.insert(request);
 			}
 			return  result  > 0 ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
