@@ -1,4 +1,6 @@
 package com.wys.chats.user.controller;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,21 @@ public class UserController {
 	
 	@Autowired
 	private SendMailUtils sendMailUtils;
+	/**
+	 * 新增
+	 */
+	@RequestMapping("/login.do")
+	@ResponseBody
+	public Object login(@RequestBody TbUserInfo tbUserInfo){
+		try {
+			Map<String, Object> result = tbUserInfoService.login(tbUserInfo);
+			return result  != null ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
+		} catch (Exception e) {
+			SysLog.error("新增:---"+e);
+			return new Response(SystemCode.code_1002, null);
+		}
+	}
+	
 
 	/**
 	 * 新增

@@ -12,6 +12,13 @@
 	<select id="count" parameterType="java.util.Map" resultType="int">
 		select count(0) from tb_user_info
 	</select>
+	<!-- 用户登录查询 -->
+	<select id="login" parameterType="TbUserInfo" resultType="TbUserInfo">
+		select * from tb_user_info
+		<where>
+			(`name`= #{name} or email=#{name}) and `password`=#{password}
+		</where>
+	</select>
 
 	<insert id="insert" parameterType="java.util.Map">
 		INSERT INTO tb_user_info (
@@ -48,8 +55,9 @@
 		)
 	</insert>
 
-	<delete id="delete" parameterType="java.util.Map" >
-		UPDATE tb_user_info SET
+	<delete id="delete" parameterType="java.util.Map">
+		UPDATE
+		tb_user_info SET
 		`isdelete`= '0' WHERE `id` =#{id}
 	</delete>
 
@@ -80,7 +88,8 @@
 	</update>
 
 
-	<select id="load" parameterType="com.wys.chats.core.Request" resultMap="TbUserInfo">
+	<select id="load" parameterType="com.wys.chats.core.Request"
+		resultMap="TbUserInfo">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM tb_user_info WHERE `id` = #{id}
