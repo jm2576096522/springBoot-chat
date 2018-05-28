@@ -18,7 +18,7 @@ public interface TbUserInfoDao extends BaseDao{
 	/**
 	 * 新增
 	 */
-	public int insert(@Param("tbUserInfo") TbUserInfo tbUserInfo);
+	public int insert(Request request);
 
 	/**
 	 * 删除
@@ -28,7 +28,7 @@ public interface TbUserInfoDao extends BaseDao{
 	/**
 	 * 更新
 	 */
-	public int update(@Param("tbUserInfo") TbUserInfo tbUserInfo);
+	public int update( TbUserInfo tbUserInfo);
 
 	/**
 	 * Load查询

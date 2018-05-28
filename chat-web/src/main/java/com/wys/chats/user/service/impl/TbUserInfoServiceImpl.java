@@ -31,12 +31,12 @@ public class TbUserInfoServiceImpl implements TbUserInfoService {
 	 * 新增
 	 */
 	@Override
-	public int insert(TbUserInfo tbUserInfo) {
+	public int insert(Request request) {
 		try {
-			if (tbUserInfo == null) {
+			if (request.getName() == null) {
 				return 0;
 			}
-			return tbUserInfoDao.insert(tbUserInfo);
+			return tbUserInfoDao.insert(request);
 		} catch (Exception e) {
 			SysLog.error("新增service:---"+e);
 			return 0;

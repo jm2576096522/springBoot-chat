@@ -18,7 +18,7 @@ public interface TbUserInfoService{
 	/**
 	 * 新增
 	 */
-	public int insert(TbUserInfo tbUserInfo);
+	public int insert(Request request);
 
 	/**
 	 * 删除
