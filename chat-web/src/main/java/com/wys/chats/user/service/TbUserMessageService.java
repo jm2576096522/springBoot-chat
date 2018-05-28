@@ -1,4 +1,6 @@
 package com.wys.chats.user.service;
+import javax.servlet.http.HttpServletRequest;
+
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.Request;
 import com.wys.chats.entity.TbUserMessage;
@@ -33,5 +35,13 @@ public interface TbUserMessageService {
     * 分页查询
     */
     public PageBean pageList(Request request);
+
+    /**
+     * 发送消息
+     * @param request
+     * @param httpServletRequest 
+     * @return
+     */
+	public int sendMessage(Request request, HttpServletRequest httpServletRequest);
 
 }

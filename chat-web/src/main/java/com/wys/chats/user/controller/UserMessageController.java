@@ -1,5 +1,6 @@
 package com.wys.chats.user.controller;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +12,9 @@ import com.wys.chats.core.Request;
 import com.wys.chats.core.Response;
 import com.wys.chats.core.SystemCode;
 import com.wys.chats.entity.TbUserMessage;
+import com.wys.chats.interceptor.MyRequestHandler;
 import com.wys.chats.user.service.TbUserMessageService;
+import com.wys.chats.util.JsonUtil;
 import com.wys.chats.util.SysLog;
 
 /**
@@ -41,6 +44,22 @@ public class UserMessageController {
 		}
 	}
 
+	/**
+	 * 发送消息
+	 */
+	@RequestMapping("/sendMessage")
+	@ResponseBody
+	public Object sendMessage(@RequestBody Request request,HttpServletRequest httpServletRequest){
+		try {
+			int result = tbUserMessageService.sendMessage(request, httpServletRequest);
+			MyRequestHandler.handlerWebSocketPush(JsonUtil.getMapFromJsonObjStr(request.getData()));
+			return result  > 0 ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
+		} catch (Exception e) {
+			SysLog.error("新增:---"+e);
+			return new Response(SystemCode.code_1002, null);
+		}
+	}
+	
 	/**
 	 * 删除
 	 */

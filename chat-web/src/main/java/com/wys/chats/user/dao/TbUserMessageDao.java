@@ -1,4 +1,6 @@
 package com.wys.chats.user.dao;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -37,4 +39,11 @@ public interface TbUserMessageDao extends BaseDao{
      * 根据用户id统计用户未读消息数
      */
     public int countUserMessageByUserId(TbUserInfo tbUserInfo);
+
+    /**
+     * 发送消息
+     * @param paramMap
+     * @return 
+     */
+	public int sendMessage(Map<String, Object> paramMap);
 }

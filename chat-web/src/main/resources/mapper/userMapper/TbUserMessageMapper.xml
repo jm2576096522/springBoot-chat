@@ -23,6 +23,13 @@
         `msg_state`
     </sql>
     
+    <!-- 发送消息 -->
+    <insert id="sendMessage" parameterType="java.util.Map">
+    	INSERT INTO tb_user_message (user_id,friend_id,msg_info,resource_url,send_time,msg_state) 
+		VALUES(#{user_id},#{friend_id},#{msg_info},#{resource_url},#{send_time},0)
+    </insert>
+    
+    
     <!-- 统计用户未读消息数 -->
 	<select id="countUserMessageByUserId" parameterType="com.wys.chats.entity.TbUserInfo" resultType="java.lang.Integer">
 		SELECT count(id) from tb_user_message where user_id= #{id} and msg_state='0'

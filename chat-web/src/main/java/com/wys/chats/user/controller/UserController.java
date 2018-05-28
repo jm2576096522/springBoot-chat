@@ -2,7 +2,6 @@ package com.wys.chats.user.controller;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.Request;
@@ -35,7 +33,7 @@ public class UserController {
 
 	@Resource
 	private TbUserInfoService tbUserInfoService;
-	
+
 	@Autowired
 	private SendMailUtils sendMailUtils;
 	/**
@@ -52,7 +50,7 @@ public class UserController {
 			return new Response(SystemCode.code_1002, null);
 		}
 	}
-	
+
 
 
 	/**
@@ -100,6 +98,8 @@ public class UserController {
 		}
 	}
 
+
+
 	/**
 	 * 分页查询
 	 */
@@ -109,17 +109,19 @@ public class UserController {
 		try {
 			PageBean pb = tbUserInfoService.pageList(request);
 			//推送socket消息
-			MyRequestHandler.handlerWebSocketPush(JsonUtil.getMapFromJsonObjStr(request.getData()));
+			/*MyRequestHandler.handlerWebSocketPush(JsonUtil.getMapFromJsonObjStr(request.getData()));
 			String[] toMail = { "595068001@qq.com"  };  
 			//邮箱验证码  return 验证码
-			sendMailUtils.sendTextWithMail(toMail, "获取Web Chat 注册的验证码 ", "你要注册的Web Chat 的验证码为：");
+			sendMailUtils.sendTextWithMail(toMail, "获取Web Chat 注册的验证码 ", "你要注册的Web Chat 的验证码为：");*/
 			return  pb  != null ? new Response(SystemCode.code_1000, pb) : new Response(SystemCode.code_1001, null);
 		} catch (Exception e) {
 			SysLog.error("分页查询:---"+e);
 			return new Response(SystemCode.code_1002, null);
 		}
 	}
-	
+
+
+
 	/**
 	 * 获取邮箱验证码
 	 */
@@ -142,7 +144,9 @@ public class UserController {
 			return new Response(SystemCode.code_1002, null);
 		}
 	}
-	
+
+
+
 	/**
 	 * 用户注册
 	 */

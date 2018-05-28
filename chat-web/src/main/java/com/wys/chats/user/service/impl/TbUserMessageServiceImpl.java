@@ -2,6 +2,9 @@ package com.wys.chats.user.service.impl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,14 +16,15 @@ import com.wys.chats.core.Request;
 import com.wys.chats.entity.TbUserMessage;
 import com.wys.chats.user.dao.TbUserMessageDao;
 import com.wys.chats.user.service.TbUserMessageService;
+import com.wys.chats.util.DateUtil;
 import com.wys.chats.util.JsonUtil;
 import com.wys.chats.util.SysLog;
 
 /**
-* 
-*
-* Created by wangyanshu on '2018-05-17 23:28:41'.
-*/
+ * 
+ *
+ * Created by wangyanshu on '2018-05-17 23:28:41'.
+ */
 @Service
 public class TbUserMessageServiceImpl implements TbUserMessageService {
 
@@ -28,15 +32,15 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
 	private TbUserMessageDao tbUserMessageDao;
 
 	/**
-    * 新增
-    */
+	 * 新增
+	 */
 	@Override
 	public int insert(TbUserMessage tbUserMessage) {
 		try {
 			if (tbUserMessage == null) {
 				return 0;
-	        }
-	        return tbUserMessageDao.insert(tbUserMessage);
+			}
+			return tbUserMessageDao.insert(tbUserMessage);
 		} catch (Exception e) {
 			SysLog.error("新增service:---"+e);
 			return 0;
@@ -44,8 +48,8 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
 	}
 
 	/**
-	* 删除
-	*/
+	 * 删除
+	 */
 	@Override
 	public int delete(int id) {
 		try {
@@ -57,8 +61,8 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
 	}
 
 	/**
-	* 更新
-	*/
+	 * 更新
+	 */
 	@Override
 	public int update(TbUserMessage tbUserMessage) {
 		try {
@@ -70,8 +74,8 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
 	}
 
 	/**
-	* Load查询
-	*/
+	 * Load查询
+	 */
 	@Override
 	public TbUserMessage load(TbUserMessage tbUserMessage) {
 		try {
@@ -84,8 +88,8 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
 	}
 
 	/**
-	* 分页查询
-	*/
+	 * 分页查询
+	 */
 	@Override
 	public PageBean pageList(Request request) {
 		Map<String, Object> paramMap = null;
@@ -97,6 +101,26 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
 		} catch (Exception e) {
 			SysLog.error("分页查询service:---"+e);
 			return null;
+		}
+	}
+
+	@Override
+	public int sendMessage(Request request, HttpServletRequest httpServletRequest) {
+		Map<String, Object> resultMap = null;
+		Map<String, Object> paramMap = null;
+		HttpSession session = httpServletRequest.getSession();
+		if (session != null && !session.getAttribute("id").equals("") ) {
+			if(request.getData() != null && !request.getData().trim().equals("")){
+				resultMap = JsonUtil.getMapFromJsonObjStr(request.getData());
+				paramMap.put("user_id", resultMap.get("id"));
+				paramMap.put("friend_id", session.getAttribute("id"));
+				paramMap.put("send_time", DateUtil.getNowTimeStamp());
+				return tbUserMessageDao.sendMessage(paramMap);
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
 		}
 	}
 
