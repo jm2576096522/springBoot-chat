@@ -34,5 +34,6 @@ public interface TbFlockRelevanceDao extends BaseDao{
     */
     public TbFlockRelevance load(@Param("tbFlockRelevance") TbFlockRelevance tbFlockRelevance);
 
+    public Object getFlockRelevanceByUserId(@Param("userId") int userId);
 
 }

@@ -17,7 +17,7 @@ public interface TbFlockMessageDao extends BaseDao{
     /**
     * 新增
     */
-    public int insert(@Param("tbFlockMessage") TbFlockMessage tbFlockMessage);
+    public int insert(TbFlockMessage tbFlockMessage);
 
     /**
     * 删除
@@ -27,12 +27,15 @@ public interface TbFlockMessageDao extends BaseDao{
     /**
     * 更新
     */
-    public int update(@Param("tbFlockMessage") TbFlockMessage tbFlockMessage);
+    public int update( TbFlockMessage tbFlockMessage);
 
     /**
     * Load查询
     */
-    public TbFlockMessage load(@Param("tbFlockMessage") TbFlockMessage tbFlockMessage);
+    public TbFlockMessage load(TbFlockMessage tbFlockMessage);
 
-
+    /**
+     * 根据用户id和群统计群未读消息数
+     */
+    public int countFlockMessageByFlockId(@Param("userId") int userId,@Param("flockId") String flockId);
 }
