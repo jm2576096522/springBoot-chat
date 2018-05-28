@@ -20,38 +20,17 @@
 		</where>
 	</select>
 
-	<insert id="insert" parameterType="java.util.Map">
+	<!-- 用户注册 -->
+	<insert id="insert" parameterType="com.wys.chats.core.Request">
 		INSERT INTO tb_user_info (
-		`id`,
 		`name`,
-		`nick_name`,
 		`password`,
-		`email`,
-		`id_card`,
-		`phone`,
-		`image`,
-		`role_id`,
-		`isdelete`,
-		`other_id`,
-		`other_name`,
-		`other_type`,
-		`view_count`
+		`email`
 		)
 		VALUES(
-		#{tbUserInfo.id},
-		#{tbUserInfo.name},
-		#{tbUserInfo.nickName},
-		#{tbUserInfo.password},
-		#{tbUserInfo.email},
-		#{tbUserInfo.idCard},
-		#{tbUserInfo.phone},
-		#{tbUserInfo.image},
-		#{tbUserInfo.roleId},
-		#{tbUserInfo.isdelete},
-		#{tbUserInfo.otherId},
-		#{tbUserInfo.otherName},
-		#{tbUserInfo.otherType},
-		#{tbUserInfo.viewCount}
+		#{name},
+		#{password},
+		#{email}
 		)
 	</insert>
 
@@ -92,7 +71,11 @@
 		resultMap="TbUserInfo">
 		SELECT
 		<include refid="Base_Column_List" />
-		FROM tb_user_info WHERE `id` = #{id}
+		FROM tb_user_info
+		<where>
+			<if test="id != null and id != ''">`id` = #{id}</if>
+			<if test="name != null and name != ''">and `email` = #{name}</if>
+		</where>
 	</select>
 
 	<resultMap id="TbUserInfo" type="com.wys.chats.entity.TbUserInfo">

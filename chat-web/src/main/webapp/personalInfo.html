@@ -28,7 +28,6 @@
 			<!-- 导航栏-->
 			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 				<li><a href="index.html"><span class="am-icon-home"></span> 首页 <span class="am-badge am-badge-warning">5</span></a></li>
-				<li ><a href="messages.html"><span class="am-icon-comments-o"></span>消息 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="friends.html"><span class="am-icon-user"></span> 联系人 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="flocks.html"><span class="am-icon-group"></span> 群聊 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li class="am-active"><a href="personalInfo.html"><span class="am-icon-newspaper-o"></span>个人中心</a></li>
@@ -47,7 +46,7 @@
 	</header>
 
 	<div class="am-cf admin-main " style="height:91%;">
-		<div data-am-widget="tabs" class="am-tabs am-tabs-d2" style="width:60%;">
+		<div data-am-widget="tabs" class="am-tabs am-tabs-d2" style="width:60%;margin:40px auto;">
 			<ul class="am-tabs-nav am-cf">
 				<li class="am-active"><a href="[data-tab-panel-0]">基本信息修改</a></li>
 				<li class=""><a href="[data-tab-panel-1]">密码修改</a></li>
@@ -56,31 +55,31 @@
 				<div data-tab-panel-0 class="am-tab-panel am-active">
 				
 					<!-- 用户名 -->
-					<div class="am-input-group">
-						<span class="am-input-group-label">用户名</span>
+					<div class="am-input-group" style="width:100%;" >
+						<span class="am-input-group-label" style="width:20%;">用户名</span>
 						<input type="text" class="am-form-field am-disabled"  placeholder="请输入用户名">
 					</div>
 					
 					<!-- 真实姓名 -->
-					<div class="am-input-group">
-						<span class="am-input-group-label">真实姓名</span>
+					<div class="am-input-group" style="width:100%;">
+						<span class="am-input-group-label" style="width:20%;">真实姓名</span>
 						<input type="text" class="am-form-field"placeholder="请输入真实姓名">
 					</div>
 					
 					<!-- 邮箱 -->
-					<div class="am-input-group">
-						<span class="am-input-group-label">邮箱</span>
+					<div class="am-input-group" style="width:100%;"> 
+						<span class="am-input-group-label" style="width:20%;">邮箱</span>
 						<input type="text" class="am-form-field am-disabled" placeholder="请输入邮箱">
 					</div>
 					<!-- 身份证号 -->
-					<div class="am-input-group">
-						<span class="am-input-group-label">身份证号</span>
+					<div class="am-input-group" style="width:100%;">
+						<span class="am-input-group-label" style="width:20%;">身份证号</span>
 						<input type="text" class="am-form-field" placeholder="请输入18位身份证号">
 					</div>
 					
 					<!-- 手机号码-->
-					<div class="am-input-group">
-						<span class="am-input-group-label">手机号码</span>
+					<div class="am-input-group" style="width:100%;">
+						<span class="am-input-group-label" style="width:20%;">手机号码</span>
 						<input type="text" class="am-form-field"placeholder="请输入11位手机号码">
 					</div>
 					<!-- 提交按钮-->
@@ -92,21 +91,20 @@
 				</div>
 				<div data-tab-panel-1 class="am-tab-panel ">
 		        	<!-- 新密码 -->
-					<div class="am-input-group">
-						<span class="am-input-group-label">新密码</span>
-						<input type="text" class="am-form-field" placeholder="请输入新密码">
+					<div class="am-input-group" style="width:100%;">
+						<span class="am-input-group-label" style="width:20%;">新密码</span>
+						<input type="password" id="password1" class="am-form-field" placeholder="请输入新密码">
 					</div>
 					<!-- 确认密码 -->
-					<div class="am-input-group">
-						<span class="am-input-group-label">确认密码</span>
-						<input type="text" class="am-form-field" placeholder="请再次输入新密码">
+					<div class="am-input-group" style="width:100%;">
+						<span class="am-input-group-label" style="width:20%;">确认密码</span>
+						<input type="password"  id="password2"class="am-form-field" placeholder="请再次输入新密码" data-equal-to="#password1" >
 					</div>
 					<!-- 提交按钮-->
 					<div class="am-margin" style="heigth:50%;">
 						<button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
 						<button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
 					</div>
-					
 					
 		        </div>
 			</div>

@@ -2,12 +2,16 @@ package com.wys.chats.user.controller;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.Request;
@@ -50,20 +54,6 @@ public class UserController {
 	}
 	
 
-	/**
-	 * 新增
-	 */
-	@RequestMapping("/insert.do")
-	@ResponseBody
-	public Object insert(@RequestBody TbUserInfo tbUserInfo){
-		try {
-			int result = tbUserInfoService.insert(tbUserInfo);
-			return result  > 0 ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
-		} catch (Exception e) {
-			SysLog.error("新增:---"+e);
-			return new Response(SystemCode.code_1002, null);
-		}
-	}
 
 	/**
 	 * 删除
@@ -126,6 +116,48 @@ public class UserController {
 			return  pb  != null ? new Response(SystemCode.code_1000, pb) : new Response(SystemCode.code_1001, null);
 		} catch (Exception e) {
 			SysLog.error("分页查询:---"+e);
+			return new Response(SystemCode.code_1002, null);
+		}
+	}
+	
+	/**
+	 * 获取邮箱验证码
+	 */
+	@RequestMapping("/getMVCode.do")
+	@ResponseBody
+	public Object getMVCode(@RequestBody Request request,HttpServletRequest handlerServlet) {
+		try {
+			int result = 0;
+			HttpSession session = handlerServlet.getSession();
+			String[] toMail = {request.getName()};  
+			TbUserInfo tbUserInfo = tbUserInfoService.load(request);
+			if (tbUserInfo.getEmail() != null && !tbUserInfo.getEmail().equals("")) {
+				return new Response(SystemCode.code_1002, "用户已注册！！！");
+			}else{
+				session.setAttribute("mvCode", sendMailUtils.sendTextWithMail(toMail, "获取Web Chat 注册的验证码 ", "你要注册的Web Chat 的验证码为："));
+			}
+			return  tbUserInfo == null ? new Response(SystemCode.code_1000, tbUserInfo) : new Response(SystemCode.code_1001, null);
+		} catch (Exception e) {
+			SysLog.error("获取邮箱验证码:---"+e);
+			return new Response(SystemCode.code_1002, null);
+		}
+	}
+	
+	/**
+	 * 用户注册
+	 */
+	@RequestMapping("/register.do")
+	@ResponseBody
+	public Object register(@RequestBody Request request,HttpServletRequest handlerServlet) {
+		try {
+			int result = 0;
+			HttpSession session = handlerServlet.getSession();
+			if (session.getAttribute("mvCode")!=null && session.getAttribute("mvCode").equals(request.getKeyword())) {
+				result = tbUserInfoService.insert(request);
+			}
+			return  result  > 0 ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
+		} catch (Exception e) {
+			SysLog.error("用户注册:---"+e);
 			return new Response(SystemCode.code_1002, null);
 		}
 	}

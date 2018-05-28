@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body>
+<body >
 	<header>
 		<div class="log-header">
 			<h1>
@@ -59,8 +59,7 @@
 				<form class="am-form" id="log-form" onsubmit="return false">
 					<!-- 问题反馈 -->
 					<p>
-						<label id="feedback"> <!-- ${errorMsg} -->&nbsp;
-						</label>
+						<label id="feedback"></label>
 					</p>
 
 					<!-- 邮箱 -->
@@ -83,14 +82,15 @@
 					<br>
 					<!-- 验证码-->
 					<div class="am-input-group am-animation-slide-left log-animation-delay-c">
-						<input type="text" id="yzm" name="yzm" class="yzm" style="float: left; width: 110px; margin-right: 10px;"data-validation-message="请输入验证码" placeholder="验证码" required /> 
-						<img id="yzm_img" class="yzm_img" src="">
-						<a id="yzm_change">看不清，换一张</a>
+						<input type="tel" name="verify_input" class="am-radius" maxlength="4" style="float: left; width: 110px; margin-right: 10px;"data-validation-message="请输入验证码" placeholder="验证码" required onblur="checkVerify();"/> 
+						<a href="javascript:void(0);" rel="external nofollow" title="点击更换验证码">
+							<img id="imgVerify" src="" alt="更换验证码" height="36" width="40%" onclick="getVerify();" >
+						</a>
 					</div>
+					
 					<br>
-
 					<!-- 登录按钮 -->
-					<button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay" onclick="login()">登录</button>
+					<button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay"onclick="login()">登录</button>
 				</form>
 			</div>
 		</div>
@@ -103,6 +103,7 @@
 	<script src="assets/js/app.js"></script>
 
 	<script type="text/javascript">
+		getVerify();
 		<!-- 点击注册 -->
 		function register() {
 			window.location.href = 'register.html';
@@ -125,17 +126,32 @@
 			if(yzm==""){
 				return false;
 			}
-			addsocket();
-			//window.location.href = 'index.html';
+			window.location.href = 'index.html';
+		}
+		function getVerify(){
+			document.getElementById("imgVerify").src = "http://localhost:8088/getVerify?"+Math.random();
+		}
+		//校验验证码
+		function checkVerify(){
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url:"/checkVerify",
+				data:'{"inputStr":'+$("input[name='verify_input']").val()+'}',
+				contentType: "application/json;charset=utf-8",
+				success: function (data) {
+					if(data==true){
+						document.getElementById("feedback").innerHTML="";
+						return true;
+					}else{
+						document.getElementById("feedback").innerHTML="验证码输入错误!";
+						//出错时回调该函数
+						return false;
+					}
+				}
+			})
 		}
 		
-		/*图片验证码  */
-		/* $(function() {
-			$("#yzm_img").attr("src", "chat-web/valicode?" + new Date().getTime());
-		});
-		$("#yzm_change").click(function() {
-			$("#yzm_img").attr("src", "chat-web/valicode?" + new Date().getTime());
-		}); */
 	</script>
 </body>
 </html>

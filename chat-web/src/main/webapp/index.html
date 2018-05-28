@@ -30,7 +30,6 @@
 			<!-- 导航栏-->
 			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 				<li class="am-active"><a href="index.html"><span class="am-icon-home"></span> 首页 <span class="am-badge am-badge-warning">5</span></a></li>
-				<li><a href="messages.html"><span class="am-icon-comments-o"></span>消息 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="friends.html"><span class="am-icon-user"></span> 联系人 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="flocks.html"><span class="am-icon-group"></span> 群聊 <span class="am-badge am-badge-warning">5</span></a></li>
 				<li><a href="personalInfo.html"><span class="am-icon-newspaper-o"></span>个人中心</a></li>
@@ -50,15 +49,6 @@
 
 	<div class="am-cf admin-main am-scrollable-vertical" style="height:91%;">
 		<!-- content start -->
-		<div class="admin-content ">
-			<div class="admin-content-body">
-				<ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
-					<li><a href="index.html" class="am-text-secondary"><span class="am-icon-btn am-icon-bookmark"></span><br/>公告<br/>3000</a></li>
-					<li><a href="messages.html" class="am-text-success"><span class="am-icon-btn am-icon-comments-o"></span><br/>消息<br/>2300</a></li>
-					<li><a href="friends.html" class="am-text-warning"><span class="am-icon-btn am-icon-user"></span><br/>联系人<br/>308</a></li>
-					<li><a href="flock.html" class="am-text-danger"><span class="am-icon-btn am-icon-group"></span><br/>群聊<br/>80082</a></li>
-				</ul>
-			</div>
 			<div class="am-g am-margin-top">
 				<!-- 左边内容-->
 				<div class="am-u-md-6">
@@ -102,7 +92,7 @@
 					</div>
 
 					<!-- 好友上线提醒（显示最近的两条）-->
-					<!-- <div class="am-panel am-panel-default">
+					<div class="am-panel am-panel-default">
 						<div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">好友上线提示<span class="am-icon-chevron-down am-fr" ></span></div>
 						<div id="collapse-panel-2" class="am-panel-bd am-collapse am-in am-cf">
 							<ul class="am-comments-list admin-content-comment">
@@ -120,7 +110,7 @@
 									</div>
 								</li>
 							</ul>
-							分页（2）
+							<!-- 分页（2） -->
 							<ul class="am-pagination am-fr admin-content-pagination">
 								<li class="am-disabled"><a href="#">&laquo;</a></li>
 								<li class="am-active"><a href="#">1</a></li>
@@ -131,7 +121,7 @@
 								<li><a href="#">&raquo;</a></li>
 							</ul>
 						</div>
-					</div> -->
+					</div> 
 				</div>
 		
 				<!-- 右边内容-->
@@ -199,9 +189,42 @@
 							</ul>
 						</div>
 					</div>
+					
+					<!-- 新群聊（5条）-->
+					<div class="am-panel am-panel-default">
+						<div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}">加入群<span class="am-icon-chevron-down am-fr" ></span></div>
+						<div class="am-panel-bd am-collapse am-in am-cf" id="collapse-panel-3">
+							<ul class="am-comments-list admin-content-comment">
+								<li class="am-comment">
+									<a href="#"><img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar" width="48" height="48"></a>
+									<div class="am-comment-main">
+										<div class="am-comment-meta">
+											<div class="am-fl">
+												<a href="#" class="am-comment-author">我</a>申请加入的群   （群名）<time>2014-7-12 15:30</time>
+											</div>
+											<div class="am-fr">
+												<button type="button" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-check">已同意</span></button>
+												<button type="button" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times">已拒绝</span></button>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							
+							<!-- 分页（5 条）-->
+							<ul class="am-pagination am-fr admin-content-pagination">
+								<li class="am-disabled"><a href="#">&laquo;</a></li>
+								<li class="am-active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">&raquo;</a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 		<!-- content end -->
 	</div>
 
