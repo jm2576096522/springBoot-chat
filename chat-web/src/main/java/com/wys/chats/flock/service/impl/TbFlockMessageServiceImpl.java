@@ -1,4 +1,5 @@
 package com.wys.chats.flock.service.impl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ import com.wys.chats.util.SysLog;
 @Service
 public class TbFlockMessageServiceImpl implements TbFlockMessageService {
 
-	@Resource
+	@Autowired
 	private TbFlockMessageDao tbFlockMessageDao;
 
 	/**
