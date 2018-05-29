@@ -38,7 +38,7 @@ public interface TbUserMessageDao extends BaseDao{
     /**
      * 根据用户id统计用户未读消息数
      */
-    public int countUserMessageByUserId(TbUserInfo tbUserInfo);
+    public int countUserMessageByUserId(@Param("id") Object id);
 
     /**
      * 发送消息
@@ -46,4 +46,5 @@ public interface TbUserMessageDao extends BaseDao{
      * @return 
      */
 	public int sendMessage(Map<String, Object> paramMap);
+
 }

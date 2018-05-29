@@ -23,7 +23,7 @@
 		`read_user_id`
 	</sql>
 
-	<select id="countFlockMessageByFlockId" parameterType="java.util.Map"
+	<select id="countFlockMessageByFlockId" parameterType="java.lang.Object"
 		resultType="java.lang.Integer">
 		SELECT count(id) FROM tb_flock_message WHERE flock_id in (${flockId}) AND
 		!find_in_set(#{userId},read_user_id)

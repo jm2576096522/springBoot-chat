@@ -24,6 +24,27 @@
         `status`,
         `isdelete`
     </sql>
+    
+    
+    <!-- 分页查询数据 -->
+	<select id="list" parameterType="java.util.Map" resultMap="TbUserRelevance">
+		select * from tb_user_relevance
+		<where>
+		    isdelete = '1'
+		    <if test="userId != null and userId !=''">and user_id = #{userId}</if>
+		</where>
+		 order by id DESC limit #{OFFSET} , #{LIMIT}
+	</select>
+
+	<!-- 统计数据条数 -->
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(0) from tb_user_relevance
+		<where>
+		     isdelete = '1'
+			    <if test="userId != null and userId !=''">and user_id = #{userId}</if>
+		</where>
+	</select>
+	
 
     <insert id="insert" parameterType="java.util.Map" >
         INSERT INTO tb_user_relevance (

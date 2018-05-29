@@ -36,17 +36,29 @@ public class UserController {
 
 	@Autowired
 	private SendMailUtils sendMailUtils;
-	/**
-	 * 新增
-	 */
+
+	
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public Object login(@RequestBody TbUserInfo tbUserInfo){
+	public Object login(@RequestBody TbUserInfo tbUserInfo, HttpServletRequest handlerServlet){
 		try {
-			Map<String, Object> result = tbUserInfoService.login(tbUserInfo);
+			TbUserInfo result = tbUserInfoService.login(tbUserInfo,handlerServlet);
+			return result  != null ? new Response(SystemCode.code_1000, result.getId()) : new Response(SystemCode.code_1001, null);
+		} catch (Exception e) {
+			SysLog.error("登录:---"+e);
+			return new Response(SystemCode.code_1002, null);
+		}
+	}
+	
+	
+	@RequestMapping("/index.do")
+	@ResponseBody
+	public Object index(@RequestBody Request request, HttpServletRequest handlerServlet){
+		try {
+			Map<String, Object> result = tbUserInfoService.index(request,handlerServlet);
 			return result  != null ? new Response(SystemCode.code_1000, result) : new Response(SystemCode.code_1001, null);
 		} catch (Exception e) {
-			SysLog.error("新增:---"+e);
+			SysLog.error("加载首页:---"+e);
 			return new Response(SystemCode.code_1002, null);
 		}
 	}

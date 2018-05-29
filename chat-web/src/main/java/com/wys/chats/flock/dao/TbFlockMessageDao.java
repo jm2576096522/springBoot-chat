@@ -37,5 +37,5 @@ public interface TbFlockMessageDao extends BaseDao{
     /**
      * 根据用户id和群统计群未读消息数
      */
-    public int countFlockMessageByFlockId(@Param("userId") int userId,@Param("flockId") String flockId);
+    public int countFlockMessageByFlockId(@Param("userId") Object userId,@Param("flockId") Object flockId);
 }

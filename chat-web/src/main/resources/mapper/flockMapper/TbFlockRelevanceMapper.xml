@@ -24,9 +24,9 @@
 	</sql>
 	
 	<!-- 群关系群id -->
-	<select id="getFlockRelevanceByUserId" parameterType="java.lang.Integer" resultType="java.lang.Object">
+	<select id="getFlockRelevanceByUserId" parameterType="java.lang.Object" resultType="java.lang.Object">
 		SELECT group_concat(user_id) from tb_flock_relevance
-		WHERE user_id=#{id} AND isdelete='1'
+		WHERE user_id=#{userId} AND isdelete='1'
 	</select>
 	
 	<insert id="insert" parameterType="java.util.Map">

@@ -31,7 +31,7 @@
     
     
     <!-- 统计用户未读消息数 -->
-	<select id="countUserMessageByUserId" parameterType="com.wys.chats.entity.TbUserInfo" resultType="java.lang.Integer">
+	<select id="countUserMessageByUserId" parameterType="java.lang.Object" resultType="java.lang.Integer">
 		SELECT count(id) from tb_user_message where user_id= #{id} and msg_state='0'
 	</select>
 

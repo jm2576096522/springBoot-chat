@@ -2,6 +2,8 @@ package com.wys.chats.user.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.wys.chats.core.BaseDao;
 import com.wys.chats.core.PageBean;
 import com.wys.chats.core.Request;
@@ -40,6 +42,9 @@ public interface TbUserInfoService{
 	 */
 	public PageBean pageList(Request request);
 
-	public Map<String, Object> login(TbUserInfo tbUserInfo);
+
+	public Map<String, Object> index(Request request, HttpServletRequest handlerServlet);
+
+	public TbUserInfo login(TbUserInfo tbUserInfo, HttpServletRequest handlerServlet);
 
 }

@@ -33,8 +33,8 @@ public class IndexController {
 			response.setHeader("Cache-Control", "no-cache");
 			response.setDateHeader("Expire", 0);
 			/*RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
-			randomValidateCode.getRandcode(request, response);// 输出验证码图片方法
-*/			SysLog.error("获取验证码成功----- ");
+			randomValidateCode.getRandcode(request, response);// 输出验证码图片方法*/
+			SysLog.error("获取验证码成功----- ");
 		} catch (Exception e) {
 			SysLog.error("获取验证码失败----- " + e);
 		}
